@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ContextualFlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -79,22 +81,57 @@ fun App() {
                 modifier = Modifier.fillMaxWidth().padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                item { SmallBox(Color.Red, "One") }
-                item { SmallBox(Color.Green, "Two") }
-                item { SmallBox(Color.Blue, "Three") }
-                item { SmallBox(Color.Magenta, "Four") }
-                item { SmallBox(Color.Cyan, "Five") }
+                item {
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .background(Color.Red, shape = RoundedCornerShape(8.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "One", fontSize = 12.sp, color = Color.White)
+                    }
+                }
+
+                item {
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .background(Color.Green, shape = RoundedCornerShape(8.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Two", fontSize = 12.sp, color = Color.White)
+                    }
+                }
+
+                item {
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .background(Color.Blue, shape = RoundedCornerShape(8.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Three", fontSize = 12.sp, color = Color.White)
+                    }
+                }
+
+                item {
+                    Image(
+                        painter = painterResource(id = R.drawable.melody), contentDescription = "First Image",
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier.size(60.dp)
+                        .clip(RoundedCornerShape(8.dp)))
+
+                }
+
+                item {
+                    Image(painter = painterResource(id = R.drawable.melody), contentDescription = "First Image",
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier.size(60.dp)
+                            .clip(RoundedCornerShape(8.dp)))
+
+                }
             }
         }
-    }
-}
-@Composable
-fun SmallBox(color: Color, label: String) {
-    Box(
-        modifier = Modifier.size(60.dp).background(color, shape = RoundedCornerShape(8.dp)),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = label, fontSize = 12.sp, color = Color.Black)
     }
 }
 
