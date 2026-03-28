@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ContextualFlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.designfromscrach.ui.theme.customTypographyM3
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,97 +47,94 @@ fun App() {
             )
         }
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "HELLO WORLD",
-                style = MaterialTheme.typography.bodyLarge
-            )
+        // Here we call Typography from type.kt
+        MaterialTheme(typography = customTypographyM3) {
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Card(
-                modifier = Modifier.fillMaxWidth().height(200.dp),
-                shape = RoundedCornerShape(12.dp),
-                elevation = CardDefaults.cardElevation(8.dp)
+            Column(
+                modifier = Modifier.fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(R.drawable.ic_launcher_background),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.FillBounds
-                )
-            }
+                Text(text = "HELLO KETU",
+                    style = MaterialTheme.typography.bodyLarge)
 
-            Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
-            LazyRow(
-                modifier = Modifier.fillMaxWidth().padding(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                item {
-                    Box(
-                        modifier = Modifier
-                            .size(60.dp)
-                            .background(Color.Red, shape = RoundedCornerShape(8.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "One", fontSize = 12.sp, color = Color.White)
+                Card(
+                    modifier = Modifier.fillMaxWidth().height(200.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    elevation = CardDefaults.cardElevation(8.dp)
+                ) {
+                    Image(painter = painterResource(R.drawable.ketu),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.FillBounds
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth().padding(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .size(60.dp)
+                                .background(Color.Red, shape = RoundedCornerShape(8.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(text = "One", fontSize = 12.sp, color = Color.White)
+                        }
                     }
-                }
-
-                item {
-                    Box(
-                        modifier = Modifier
-                            .size(60.dp)
-                            .background(Color.Green, shape = RoundedCornerShape(8.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "Two", fontSize = 12.sp, color = Color.White)
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .size(60.dp)
+                                .background(Color.Green, shape = RoundedCornerShape(8.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(text = "Two", fontSize = 12.sp, color = Color.White)
+                        }
                     }
-                }
-
-                item {
-                    Box(
-                        modifier = Modifier
-                            .size(60.dp)
-                            .background(Color.Blue, shape = RoundedCornerShape(8.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "Three", fontSize = 12.sp, color = Color.White)
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .size(60.dp)
+                                .background(Color.Blue, shape = RoundedCornerShape(8.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(text = "Three", fontSize = 12.sp, color = Color.White)
+                        }
                     }
-                }
+                    item {
+                        Image(
+                            painter = painterResource(id = R.drawable.melody), contentDescription = "First Image",
+                            contentScale = ContentScale.FillBounds,
+                            modifier = Modifier.size(60.dp)
+                                .clip(RoundedCornerShape(8.dp)))
 
-                item {
-                    Image(
-                        painter = painterResource(id = R.drawable.melody), contentDescription = "First Image",
-                        contentScale = ContentScale.FillBounds,
-                        modifier = Modifier.size(60.dp)
-                        .clip(RoundedCornerShape(8.dp)))
+                    }
+                    item {
+                        Image(painter = painterResource(id = R.drawable.melody), contentDescription = "First Image",
+                            contentScale = ContentScale.FillBounds,
+                            modifier = Modifier.size(60.dp)
+                                .clip(RoundedCornerShape(8.dp)))
 
-                }
-
-                item {
-                    Image(painter = painterResource(id = R.drawable.melody), contentDescription = "First Image",
-                        contentScale = ContentScale.FillBounds,
-                        modifier = Modifier.size(60.dp)
-                            .clip(RoundedCornerShape(8.dp)))
-
+                    }
                 }
             }
         }
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     App()
 }
-
